@@ -2,5 +2,3 @@ flask
 sentence-transformers
 torch
 pyspellchecker
-transformers
-regex
