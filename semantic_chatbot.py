@@ -2,6 +2,7 @@ from sentence_transformers import SentenceTransformer, util
 from spellchecker import SpellChecker
 import json, re
 from flask import Flask, request
+from os import environ
 
 # Load model once
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -71,5 +72,8 @@ def ask():
     suggested_q = questions[best_match_idx]
     return f"Sorry, I couldn't find a perfect match. Did you mean: '{suggested_q}'?", 200
 
+
+
 if __name__ == '__main__':
-    app.run(port=5000)
+    port = int(environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
